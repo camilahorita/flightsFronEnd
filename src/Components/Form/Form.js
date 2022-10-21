@@ -5,12 +5,12 @@ import PassengerForm from '../PassengerForm/PassengerForm';
 function Form({vector}) {
 
     var npeople = "0";
-    var city;
+    var city = "São Paulo"
     var way = "oneway";
+    var total = 0;
     const [isShown, setIsShown] = useState(false);
     const [isShown2, setIsShown2] = useState(false);
     const [isShown3, setIsShown3] = useState(false);
-    const [isShown4, setIsShown4] = useState(false);
 
     const handleChange = event => {
         var date = document.getElementById("datedeparture");
@@ -49,9 +49,18 @@ function Form({vector}) {
      };
 
      const handleClick = event => {
-        setIsShown4(true);
-     };
+        var value = vector.find(val => val.arriveCity === city);
+        console.log(value);
+        total = value.priceGo;
+        if (way === "roundtrip"){
+            total = total + value.priceReturn;
+        }
+        console.log(total);
+        var newElement = document.createElement("h3");
+        newElement.innerHTML = total;
+        document.getElementById("totalValue").appendChild(newElement);
 
+     }
     return (
         <div className="box">
             <h3>Book Flights</h3>
@@ -103,7 +112,7 @@ function Form({vector}) {
                 {isShown3 && <PassengerForm />}
             </form>
             <button className="btn btn-primary" onClick={handleClick}> Submit </button>
-            {isShown4 && <h3 id= "totalValue"> €200 </h3>}
+            <div id="totalValue"></div>
         </div>
 
     )
