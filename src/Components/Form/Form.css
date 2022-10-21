@@ -1,0 +1,16 @@
+.box {
+    width:  60%;
+    margin: auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.dates {
+    display: flex;
+    justify-content: space-around;
+}
